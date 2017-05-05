@@ -1,5 +1,8 @@
 <?php
     $mysqli = new mysqli("localhost", "root", "123", "sigetp");
+
+    $consejo_cominal_id= $mysqli->real_escape_string($_GET['id']);
+
     $sql = 'SELECT * FROM persona ORDER BY id DESC';
     $h = 6;
     $m = 4;
@@ -30,13 +33,11 @@
         <title>SIGETP - Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="/sigetp-reportes/tools/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/sigetp-reportes/tools/DataTables-1.10.13/media/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" href="/sigetp-reportes/css/Montserrat.css">
         <link rel="stylesheet" href="/sigetp-reportes/css/style.css">
         <script src="/sigetp-reportes/tools/jquery/jquery-3.1.1.min.js"></script>
         <script src="/sigetp-reportes/tools/bootstrap/js/bootstrap.min.js"></script>
         <script src="/sigetp-reportes/tools/chart.js/Chart.min.js"></script>
-        <script src="/sigetp-reportes/tools/DataTables-1.10.13/media/js/dataTables.bootstrap.min.js"></script>
     </head>
     <body>
         <!-- Navbar -->
@@ -48,7 +49,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/sigetp-reportes/index.html" title="Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica">SIGETP</a>
+                    <a class="navbar-brand" href="/sigetp-reportes/index.php" title="Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica">SIGETP</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">

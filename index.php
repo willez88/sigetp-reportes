@@ -19,10 +19,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/sigetp-reportes/index.html" title="Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica">SIGETP</a>
+                    <a class="navbar-brand" href="/sigetp-reportes/index.php" title="Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica">SIGETP</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Importar Datos</a></li>
                         <li><a href="#">Contacto</a></li>
                         <li><a href="#">Manual</a></li>
                     </ul>
@@ -32,8 +33,33 @@
 
         <div class="container-fluid bg-3 text-center">
             <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">Consejo Comunal</label>
+                        <div class="col-xs-3">
+                            <select class="form-control" id="id_consejo_comunal" name="consejo_comunal">
+                            <?php
+                                $mysqli = new mysqli("localhost", "root", "123", "sigetp");
+                                $sql= "select * from consejo_comunal";
+                                $resultado= $mysqli->query($sql);
+                                //echo "<option value=''>Seleccione...</option>";
+                                while($fila = $resultado->fetch_array(MYSQLI_NUM))
+                                {
+                                    echo "<option value='$fila[0]'>".$fila[1]."</option>";
+                                }
+                                $mysqli->close();
+                            ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid bg-3 text-center">
+            <div class="row">
                 <div class="col-xs-6">
-                    <button class="btn" style="width:300px;height:100px;" onclick="location='grafico-1.php'">Población de Hombres y Mujeres</button>
+                    <button class="btn" style="width:300px;height:100px;" onclick="location='grafico-1.php?id='+$('#id_consejo_comunal').val()">Población de Hombres y Mujeres</button>
                 </div>
                 <div class="col-xs-6">
                     <button class="btn" style="width:300px;height:100px;" onclick="location='vivienda/index.php'">Preguntas Referentes a la Vivienda</button>
@@ -58,7 +84,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Exportar Datos</h4>
+                        <h4 class="modal-title">Importar Datos</h4>
                     </div>
                     <div class="modal-body">
                         <p>Esto exportará todos los datos que están registrados en la aplicación y luego los elimina.</p>
